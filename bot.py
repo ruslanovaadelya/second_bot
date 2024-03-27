@@ -4,7 +4,7 @@ from config import TOKEN
 
 bot = telebot.TeleBot(TOKEN)
 
-infor = []
+info = []
 @bot.message_handler(commands=['start'])
 
 
@@ -30,15 +30,15 @@ def call_back(call):
 
 def input_info(message):
     if message.text is not None:
-        infor.append(message.text)
+        info.append(message.text)
         bot.send_message(message.chat.id,"данные сохранены")
     save()
 def save():
-    if len(infor)>=3:
+    if len(info)>=3:
         with open("customer.txt","a") as f:
-            f.write(f"фио {infor[0]}\n")
-            f.write(f"возраст {infor[1]}\n")
-            f.write(f"почта\телефон {infor[2]}\n")
+            f.write(f"фио {info[0]}\n")
+            f.write(f"возраст {info[1]}\n")
+            f.write(f"почта\телефон {info[2]}\n")
     else:
         print("не полных данных")
 
